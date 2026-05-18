@@ -24,7 +24,7 @@ export const exportLeads =
 
             const csv =
                 generateLeadsCSV(
-                    leads
+                    leads as any
                 );
 
             res.header(
@@ -77,7 +77,7 @@ export const getLeadController =
     asyncHandler(
         async (req: Request, res: Response) => {
             const result =
-                await getLeadById(req.params.id);
+                await getLeadById(req.params.id as string);
 
             res.status(200).json(
                 new ApiResponse(
@@ -92,7 +92,7 @@ export const updateLeadController =
     asyncHandler(
         async (req: Request, res: Response) => {
             const result = await updateLead(
-                req.params.id,
+                req.params.id as string,
                 req.body
             );
 
@@ -108,7 +108,7 @@ export const updateLeadController =
 export const deleteLeadController =
     asyncHandler(
         async (req: Request, res: Response) => {
-            await deleteLead(req.params.id);
+            await deleteLead(req.params.id as string);
 
             res.status(200).json(
                 new ApiResponse(

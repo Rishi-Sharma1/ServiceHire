@@ -1,4 +1,4 @@
-import { FilterQuery } from 'mongoose';
+// Removed FilterQuery import
 
 import { Lead } from '../../models/lead.model';
 
@@ -31,7 +31,7 @@ export const getLeads = async (
         sort = 'latest',
     } = query;
 
-    const filter: FilterQuery<any> = {};
+    const filter: any = {};
 
     if (status) {
         filter.status = status;
@@ -59,7 +59,7 @@ export const getLeads = async (
         ];
     }
 
-    const sortOrder =
+    const sortOrder: any =
         sort === 'latest'
             ? { createdAt: -1 }
             : { createdAt: 1 };
@@ -180,7 +180,7 @@ export const exportLeadsService =
             ];
         }
 
-        const sortOrder =
+        const sortOrder: any =
             query.sort ===
                 'oldest'
                 ? { createdAt: 1 }
