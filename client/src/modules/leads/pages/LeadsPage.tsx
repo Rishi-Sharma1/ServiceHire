@@ -13,6 +13,7 @@ import Pagination from '../../../shared/components/ui/Pagination';
 import TableSkeleton from '../../../shared/components/ui/TableSkeleton';
 
 import { useTheme } from '../../../hooks/useTheme';
+import type { ILeadPayload, LeadStatus, LeadSource } from '../types/lead.types';
 
 export default function LeadsPage() {
     const { user, logout } =
@@ -37,7 +38,7 @@ export default function LeadsPage() {
     } = useLeads();;
 
     const [formData, setFormData] =
-        useState({
+        useState<ILeadPayload>({
             name: '',
 
             email: '',
@@ -62,7 +63,7 @@ export default function LeadsPage() {
                 setEditingLead(null);
             } else {
                 await createLead(
-                    formData as any
+                    formData
                 );
             }
 
@@ -235,8 +236,7 @@ export default function LeadsPage() {
                                     ...formData,
 
                                     status:
-                                        e.target
-                                            .value,
+                                        e.target.value as LeadStatus,
                                 })
                             }
                             className="p-3 border rounded-lg dark:bg-[#1e293b] dark:text-gray-400"
@@ -267,8 +267,7 @@ export default function LeadsPage() {
                                     ...formData,
 
                                     source:
-                                        e.target
-                                            .value,
+                                        e.target.value as LeadSource,
                                 })
                             }
                             className="p-3 border rounded-lg dark:bg-[#1e293b] dark:text-gray-400"
