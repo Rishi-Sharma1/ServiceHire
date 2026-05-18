@@ -2,9 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import { errorMiddleware } from './middleware/error.middleware'
 import { env } from './config/env.config';
+import { globalLimiter } from './middleware/rate-limit.middleware';
 import routes from './routes';
 
 const app = express();
+
+app.use(globalLimiter);
 
 app.use(
     cors({
